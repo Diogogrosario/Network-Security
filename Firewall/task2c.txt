@@ -1,0 +1,5 @@
+iptables -F
+iptables -P OUTPUT ACCEPT
+iptables -P INPUT  ACCEPT
+iptables -A FORWARD -i eth0 -o eth1 -p tcp --destination 192.168.60.5 --dport 23  -j ACCEPT
+iptables -A FORWARD -i eth0 -o eth1 -p tcp  -j DROP

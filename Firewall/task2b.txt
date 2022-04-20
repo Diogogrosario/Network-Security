@@ -1,0 +1,7 @@
+iptables -F
+iptables -P OUTPUT ACCEPT
+iptables -P INPUT  ACCEPT
+iptables -A FORWARD -i eth0 -o eth1 -p icmp --icmp-type echo-request -j DROP
+iptables -A FORWARD -i eth1 -o eth0 -p icmp --icmp-type echo-request -j ACCEPT
+iptables -A FORWARD -i eth0 -o eth1 -p icmp --icmp-type echo-reply -j ACCEPT
+iptables -A FORWARD -j DROP
