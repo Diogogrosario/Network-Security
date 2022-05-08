@@ -51,6 +51,7 @@ int main()
   int n_resp = fread(ip_resp, 1, MAX_FILE_SIZE, f_resp);
 
   char a[26]="abcdefghijklmnopqrstuvwxyz";
+
   while (1) {
     // Generate a random name with length 5
     char name[5];
@@ -113,8 +114,8 @@ void send_dns_response(unsigned char *packet, int pkt_size)
     send_raw_packet(packet, pkt_size);
 
     // Copy ip addres (offset=12)
-    int ip_address = (int) inet_addr(ns2);
-    memcpy(packet+12, (void *) &ip_address, 4);
+    int ip_address2 = (int) inet_addr(ns2);
+    memcpy(packet+12, (void *) &ip_address2, 4);
     send_raw_packet(packet, pkt_size);
   }
 }

