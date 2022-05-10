@@ -219,7 +219,7 @@ The captured log can be seen [here](logs/task2.pcapng). Packet number 3 correspo
 
 <figure align="center">
   <img src="images/img4.png" alt="my alt text"/>
-  <figcaption style="text-align: center;">Figure 4. Network Configuration</figcaption>
+  <figcaption style="text-align: center;">Figure 4. No such name for random domain name</figcaption>
 </figure>
 
 We can also check this by running the `dig` command:
@@ -612,7 +612,7 @@ And indeed that's what happens! Also, we can check the success of the attack by 
 
 <figure align="center">
   <img src="images/img5.png" alt="my alt text"/>
-  <figcaption style="text-align: center;">Figure 5. Network Configuration</figcaption>
+  <figcaption style="text-align: center;">Figure 5. Kaminsky attack success</figcaption>
 </figure>
 
 ## Task 5
@@ -649,7 +649,7 @@ As it can be seen, also from the [capture](logs/task5_normal_dig.pcapng) below, 
 
 <figure align="center">
   <img src="images/img6.png" alt="my alt text"/>
-  <figcaption style="text-align: center;">Figure 6. Network Configuration</figcaption>
+  <figcaption style="text-align: center;">Figure 6. dig www.example.com capture file</figcaption>
 </figure>
 
 The second `dig` command:
@@ -685,7 +685,7 @@ This further proves the success of the attack, since the victim server is answer
 
 <figure align="center">
   <img src="images/img7.png" alt="my alt text"/>
-  <figcaption style="text-align: center;">Figure 7. Network Configuration</figcaption>
+  <figcaption style="text-align: center;">Figure 7. dig @ns.attacker32.com www.example.com capture file</figcaption>
 </figure>
 
 And with that we end this lab report.
