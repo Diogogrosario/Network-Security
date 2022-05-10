@@ -187,7 +187,7 @@ Our goal in this lab is to redirect the user to a machine B when he tries to get
 
 > Implementing the Kaminsky attack all at once is quite challenging, so we break it down into several sub-tasks. In Task 2, we construct the DNS request for a random hostname in the `example.com` domain. In Task 3, we construct a spoofed DNS reply from `example.com`'s name server. In Task 4, we put everything together to launch the Kaminsky attack and in Task 5 we verify the impact of the attack.
 
-## Task 2
+## Task 2 - Construct DNS request
 
 Since the Kaminsky Attack was split into several tasks, the first goal is to make the initial DNS Request.
 This task is successful if we can trigger the DNS Server into sending DNS Queries so that we can spoof DNS Replies in the future. The following python script shows how a simple DNS request can be built using Scapy:
@@ -250,7 +250,7 @@ example.com.            3600    IN      SOA     ns.icann.org. noc.dns.icann.org.
 
 It returns an authoritative response of type SOA (Start of a zone of Authority), as in the figure above, which includes information of the primary name server for this zone (`ns.icann.org`),  responsible authority's mailbox (`noc.dns.icann.org`) and serial number, and several intervals, most of them related to the zone transferal between primary and secondary name servers. Also, notice that we of course didn't get any IP for the queried domain in the Question Section because simply there is no mapping in the name server's zone file.
 
-## Task 3
+## Task 3 - Spoof DNS Replies
 
 The second main goal is to prove that we can spoof the DNS replies from the `example.com` domain. In order to do this, we needed to find out the IP addresses of `example.com`'s legitimate name servers. To do this we just need to query the zone's authoritative name server by doing:
 
@@ -399,7 +399,7 @@ The request can be seen in packet number 3, and the spoofed replies can be seen 
 
 Note that the transaction ID used in this task is `0xAAAA` which will be different from the one used in the actual request. This causes the spoof attempt to fail. This will be addressed in the next task. One other thing that also restricts the success of the spoofed reply is that the spoofed packets, as can be seen in the capture file, are sent too early, therefore they will be classified as illegitimate. 
 
-## Task 4
+## Task 4 - Launch the Kaminsky Attack
 
 The last step is to put the attack into action: flood the target local DNS server with these spoofed replies. As stated in the Seed Labs guide, the python script might be too slow to carry on this attack. To fix this issue, we were given a code skeleton for the C code for us to fill, which is much faster. Using a hybrid approach, we first use Scapy to generate a DNS packet template, which is stored in a file. We then load this template into a C program, make small changes to some of the fields, and then send out the packet. 
 
@@ -595,7 +595,7 @@ void send_raw_packet(char * buffer, int pkt_size)
 We then compile the C script by doing:
 
 ```
-gcc -o attacker attack.c
+$ gcc -o attacker attack.c
 ```
 
 And run the attack! After a small amount of time, we check the Local DNS server's cache to see whether the attack was successful or not. We can do that by dumping the DNS cache to a file and finding the word "attacker", because we know the attack was successful if there's a record indicating that the name server for `example.com` is `ns.attacker32.com`:
@@ -615,7 +615,7 @@ And indeed that's what happens! Also, we can check the success of the attack by 
   <figcaption style="text-align: center;">Figure 5. Kaminsky attack success</figcaption>
 </figure>
 
-## Task 5
+## Task 5 - Result Verification
 
 In this task, we are asked to verify the results obtained from the Kaminsky attack performed in the previous task. We know that if the previous attack was successful, in the local DNS server's cache we will have an `NS` record for `example.com` with `ns.attacker32.com`, instead of the domain's legitimate namer servers `a.iana-servers.net` and `b.iana-servers.net`. 
 
