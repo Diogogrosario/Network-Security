@@ -10,8 +10,8 @@
 - Access http://www.attacker32.com/ (Countdown)
 
 ## Attacker DNS 
-`$ docker exec -it attacker-ns-10.9.0.153 bash`
-  - `nano /etc/bind/zone_attacker32.com`
+- `docker exec -it attacker-ns-10.9.0.153 bash`
+- `nano /etc/bind/zone_attacker32.com`
 
 ```
 # cat etc/bind/zone_attacker32.com
@@ -32,15 +32,21 @@ ns      IN      A     10.9.0.153
 *       IN      A     10.9.0.100
 ```
 
-`$ rndc reload attacker32.com`
-`$ service named restart`
+`rndc reload attacker32.com`
+
+`service named restart`
 
 ## Local DNS
-`$ docker exec -it local-dns-server-10.9.0.53 /bin/sh -c 'rndc flush'`
+`docker exec -it local-dns-server-10.9.0.53 /bin/sh -c 'rndc flush'`
+
+## Test
+
+- Access http://www.attacker32.com/change 
 
 ## Attack
 
-- Change /etc/bind/zone_attacker32.com to load malicious website
+- `docker exec -it attacker-ns-10.9.0.153 bash`
+- `nano /etc/bind/zone_attacker32.com`
 
 ```
 ...
@@ -49,9 +55,15 @@ www     IN      A     10.9.0.180
 ...
 ```
 
-`$ rndc reload attacker32.com`
+- `rndc reload attacker32.com`
 
-- Change /etc/bind/zone_attacker32.com to load IoT server
+- Fix temperature http://www.seediot32.com/
+- Reload http://www.attacker32.com/
+- Show web console
+
+
+- `docker exec -it attacker-ns-10.9.0.153 bash`
+- `nano /etc/bind/zone_attacker32.com`
 
 ```
 ...
@@ -60,4 +72,7 @@ www      IN      A     192.168.60.80
 ...
 ```
 
-`$ rndc reload attacker32.com`
+`rndc reload attacker32.com`
+
+- Show web console
+- Check http://www.seediot32.com/
