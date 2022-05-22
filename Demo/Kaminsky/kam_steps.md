@@ -56,9 +56,6 @@ with open('ip_resp.bin', 'wb') as f:
 ```
 
 ```sh
-# Go to shared folder
-cd Kaminsky/Labsetup/volumes
-
 # Generate packets with scapy
 python3 gen-packet.py 
 ls -l *.bin
@@ -86,6 +83,4 @@ docker exec local-dns-server-10.9.0.53 /bin/sh -c "rndc dumpdb -cache && grep at
 
 # Check dig tool
 docker exec user-10.9.0.5 dig www.example.com
-
-cd ../../..
 ```

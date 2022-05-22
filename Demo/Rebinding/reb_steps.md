@@ -8,6 +8,7 @@
 - `sudo nano /etc/resolvconf/resolv.conf.d/head`
 - `sudo resolvconf -u `
 - Access http://www.attacker32.com/ (Countdown)
+- Close countdown
 
 ## Attacker DNS 
 - `docker exec -it attacker-ns-10.9.0.153 bash`
@@ -32,9 +33,7 @@ ns      IN      A     10.9.0.153
 *       IN      A     10.9.0.100
 ```
 
-`rndc reload attacker32.com`
-
-`service named restart`
+- `rndc reload attacker32.com`
 
 ## Local DNS
 `docker exec -it local-dns-server-10.9.0.53 /bin/sh -c 'rndc flush'`
@@ -62,7 +61,6 @@ www     IN      A     10.9.0.180
 - Show web console
 
 
-- `docker exec -it attacker-ns-10.9.0.153 bash`
 - `nano /etc/bind/zone_attacker32.com`
 
 ```
@@ -72,7 +70,7 @@ www      IN      A     192.168.60.80
 ...
 ```
 
-`rndc reload attacker32.com`
+- `rndc reload attacker32.com`
 
 - Show web console
 - Check http://www.seediot32.com/
