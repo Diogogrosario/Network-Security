@@ -1,0 +1,4 @@
+- https://sec.stealthcopter.com/htb-ctf-writeup-cached-web/
+- https://noxious.tech/posts/HtbUniCtf/
+- https://lock.cmpxchg8b.com/rebinder.html (DNS Rebinding Service)
+- https://www.youtube.com/watch?v=aE3RTHPzrds (**Amazing explanation!**)
